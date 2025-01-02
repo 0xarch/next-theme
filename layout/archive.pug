@@ -1,0 +1,25 @@
+extends global_layout.pug
+
+append head
+    title= 'ARCHIVES'
+
+block content
+    .NeoWidget
+        - let used_year = []
+        - let y = {}
+        each post in site.posts.slice(page.current*10,page.current*10+10)
+            - let year = post.date.year()
+            if !used_year.includes(year)
+                - y[year] = []
+                - used_year.push(year)
+            - y[year].push(post)
+        - used_year.sort((a,b)=>b-a)
+        each k in used_year
+            - let v= y[k]
+            h2.archive-label
+                .year=k
+            ul.index-ul
+                each post in v
+                    li
+                        +labeled-card(post)
+    +page-navigator(page.total,page.current,'/archives')

@@ -1,0 +1,42 @@
+mixin license(post)
+    .license
+        .title= post.title
+        if post.properties['license-url']
+            .url=post.properties['license-url']
+        .announce-box
+            .author
+                span.label= __('Author')
+                span.val= post.author
+
+            .publish
+                span.label= __('Published on')
+                span.val= post.date.format('YYYY-MM-DD')
+            .license-type
+                span.label= __('License Agreement')
+                span.val
+                    - let _license = analyze_license(post.license)
+                    if _license.type == 'creative-common'
+                        - let url = 'https://creativecommons.org/licenses/'
+                        - let text = 'CC '
+                        - let is = (v)=>_license.value.includes(v)
+                        if is('by')
+                            - url += 'by-'
+                            - text += 'BY-'
+                        if is('nc')
+                            - url += 'nc-'
+                            - text += 'NC-'
+                        if is('nd')
+                            - url += 'nd-'
+                            - text += 'ND-'
+                        if is('sa')
+                            - url += 'sa-'
+                            - text += 'SA-'
+                        - let cc_version = _license.version
+                        - url = url.replace(/\-$/,'') + '/' + cc_version +'/'
+                        - text = text.replace(/\-$/,'') + ' ' + cc_version
+                        a.h-link(href=url)= text
+                    else if _license.type === 'custom'
+                        a= __('Custom license')
+                    else
+                        a= __('Private or other license')
+        .background!= get_svg('brand:creative-commons')

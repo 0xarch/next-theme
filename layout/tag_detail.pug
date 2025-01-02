@@ -1,0 +1,12 @@
+extends global_layout.pug
+
+append head
+    title= 'TAGS'
+
+block content
+    - let current_container = _container_of('tags',page.current)
+    h2 TAG: #{current_container.key}
+    ul
+        each post in current_container.values
+            li
+                a(href=url_for(post.source))= post.title

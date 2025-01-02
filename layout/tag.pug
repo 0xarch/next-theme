@@ -1,0 +1,11 @@
+extends global_layout.pug
+
+append head
+    title= 'TAGS'
+
+block content
+    h2 TAGS
+    ul
+        each tag in site.tags
+            li
+                a(href=url_for('/tags/'+tag.key+'/0/'))= tag.key

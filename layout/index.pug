@@ -1,0 +1,11 @@
+extends global_layout.pug
+
+append head
+    title= __("Home")
+
+block content
+    ul.index-ul
+        each post in site.posts.slice(page.current*10,page.current*10+10)
+            li
+                +post-card(post)
+    +page-navigator(Math.ceil(site.posts.length/10),page.current,'page')

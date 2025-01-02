@@ -1,0 +1,22 @@
+.side.user-intro.NeoWidget
+    if ctx.config.avatar
+        img.avatar(loading='lazy',src=ctx.config.avatar)
+    h2.userName
+        a(href=ctx.config.url)= ctx.config.author
+    .intro= (ctx.config.data && (ctx.config.data.intro || ctx.config.data.announcement)) || 'The stupid one'
+    .socialLinks
+        each val,key in (ctx.config.data && ctx.config.data.socialLinks) || {}
+            a.link(href=val.url,title=key)
+                i(class=val['fa-icon'])
+.stickyGroup
+    .side.category-list.NeoWidget
+        h2= i18n('Categories')
+        .cates-container
+            each v in site.categories
+                a.--smooth.cate(data-count=v.values.length,href=url_for(`/categories/${v.key}/0/index.html`))= v.key
+            
+    .side.tag-list.NeoWidget
+        h2= i18n('Tags')
+        .tags-container
+            each v in site.tags
+                a.--smooth.tag(href=url_for(`/tags/${v.key}/0/index.html`))= v.key

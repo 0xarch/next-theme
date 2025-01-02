@@ -1,0 +1,27 @@
+mixin post-meta(post,include_time=false)
+    .post-meta
+        .meta-content
+            .pubDate
+                i.iconBlock!= get_svg('material-symbols:calendar-today-outline-rounded')
+                date= post.date.format('YYYY-MM-DD')
+            .category
+                i.iconBlock!= get_svg('material-symbols:book-2-outline-rounded')
+                a.--smooth(href=url_for('/categories/'+post.categories[0]+'/0/index.html'))= post.categories[0]
+                    each val in post.categories.slice(1)
+                        .hr
+                        a.--smooth(href=url_for('/categories/'+val+'/0/index.html'))= val
+            .tag
+                i.iconBlock!= get_svg('material-symbols:tag-rounded')
+                a.--smooth(href=url_for('/tag/'+post.tags[0]+'/0/index.html'))= post.tags[0]
+                each val in post.tags.slice(1)
+                    .hr
+                    a.--smooth(href=url_for('/tag/'+val+'/0/index.html'))= val
+        if include_time
+            .meta-content
+                .wordCount
+                    i.iconBlock.plain!= get_svg('material-symbols:notes-rounded')
+                    span #{post.length} #{__('Characters')}
+                .readTime
+                    - let evlTime = Math.ceil(post.length/250)
+                    i.iconBlock.plain!= get_svg('material-symbols:schedule-outline-rounded')
+                    span #{evlTime} #{__(evlTime==1?'Minute':'Minutes')}
