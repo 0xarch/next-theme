@@ -254,6 +254,12 @@ header.global {
             }
         }
     }
+
+    body.focus & {
+        &>.operation-container {
+            top: -100%;
+        }
+    }
 }
 
 
