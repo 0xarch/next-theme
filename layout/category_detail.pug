@@ -1,12 +1,13 @@
 extends global_layout.pug
 
 append head
-    title= 'CATEGORIES'
+    title= __('Categories')
 
 block content
     - let current_container = _container_of('categories',page.current)
-    h2 TAG: #{current_container.key}
-    ul
-        each post in current_container.values
-            li
-                a(href=url_for(post.source))= post.title
+    .NeoWidget
+        ul.index-ul
+            each post in current_container.values
+                li
+                    +labeled-card(post)
+    +page-navigator(current_container.total,current_container.current,`/categories/${current_container.key}`)

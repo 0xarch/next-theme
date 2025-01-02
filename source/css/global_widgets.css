@@ -61,22 +61,22 @@
             left: .5rem;
             border-radius: 1rem;
             background-color: var(--Cbtn-content);
-            transition-property: top,height,background-color;
+            transition-property: top, height, background-color;
             transition-duration: .25s;
             transition-timing-function: ease-in-out;
         }
 
         &:hover {
-                &::before {
-                    top: calc(50% - .5rem);
-                    height: 1rem;
-                }
+            &::before {
+                top: calc(50% - .5rem);
+                height: 1rem;
+            }
         }
     }
 }
 
 .post-meta {
-    color: var(--Ctext-50);
+    color: var(--Ctext-25);
     font-weight: 900;
     overflow: hidden;
     width: 100%;
@@ -115,13 +115,13 @@
                 padding: .375rem;
                 margin: 0 .125rem;
                 border-radius: .375rem;
-                color: var(--Ctext-50);
+                color: var(--Ctext-25);
                 background-color: transparent;
                 transition: background-color .25s ease-in-out,
                     color .25s ease-in-out;
 
                 .post-card &:not(:hover) {
-                    color: var(--Ctext-25);
+                    color: var(--Ctext-50);
                 }
 
                 &:hover {
