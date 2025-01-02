@@ -74,6 +74,10 @@ header.global {
         text-decoration: none;
     }
 
+    & svg {
+        display: block;
+    }
+
     body:not(.dom-loaded) &.anim {
         animation-name: navigationbar-fin;
         animation-duration: .25s;
@@ -121,7 +125,11 @@ header.global {
         &>.home-icon {
             font-size: 1.75rem;
             margin-right: .5rem;
-            height: 2.4rem;
+            padding-bottom: .25rem;
+
+            &>svg {
+                display: block;
+            }
         }
     }
 
@@ -210,6 +218,9 @@ header.global {
                         color: var(--Cbtn-content);
                         border-radius: .5rem;
                         text-align: center;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
 
                         &.reset-button:hover {
                             background-color: var(--Cbtn-regular-bg-hover);
