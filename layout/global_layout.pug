@@ -14,7 +14,7 @@ html(lang="zh")
             meta(data-across='1',name="darkreader-lock")
             meta(data-across='1',name="viewport",content="width:device-width,initial-scale=1.0")
             meta(name="author" content=page.author || ctx.config.author)
-            //- link(data-across='1',rel="stylesheet",href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/brands.min.css")
+            link(data-across='1',rel="stylesheet",href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/brands.min.css")
             //- link(data-across='1',rel="stylesheet",href="https://cdn.jsdelivr.net/npm/roboto-font@0.1.0/css/fonts.min.css")
             link(data-across='1',rel="icon",href=url_for("icon.svg"))
             link(data-across='1',rel='stylesheet',href=url_for('css/admon-extra.min.css'))
@@ -36,6 +36,13 @@ html(lang="zh")
             .operations
                 .palette!= get_svg('material-symbols:palette-outline')
                 .toggle!= get_svg('material-symbols:menu-rounded')
+            .operation-container
+                .palette
+                    .line
+                        .reset-button!= get_svg('fa6-solid:arrow-rotate-left')
+                        .number-show
+                    .scroll
+                        input.scroller(value=250,type='range',min=0,max=360,step=5) 
         main.no-anim#NEO_MAIN
             .sideCon#NEO_SIDE
             .mainCon#NEO_REPLACE

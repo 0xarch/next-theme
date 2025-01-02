@@ -1,6 +1,6 @@
 :root {
     color-scheme: light dark;
-    --hue: var(--configHue, 250);
+    --hue: var(--config-hue, 250);
     --Wpage-width: min(calc(100% - 2rem), 75rem);
     --Wcon: var(--Wpage-width);
     --Cbrand: oklch(.7 .14 var(--hue));

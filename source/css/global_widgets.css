@@ -103,7 +103,7 @@
             display: flex;
             align-items: center;
 
-            &>:not(.iconBlock) {
+            &>:not(.iconBlock):not(.hr) {
                 padding: .375rem;
             }
         }

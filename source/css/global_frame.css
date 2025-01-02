@@ -1,3 +1,7 @@
+:root {
+    --color-selection-bar: linear-gradient(to right, oklch(.7 .1 0), oklch(.7 .1 30), oklch(.7 .1 60), oklch(.7 .1 90), oklch(.7 .1 120), oklch(.7 .1 150), oklch(.7 .1 180), oklch(.7 .1 210), oklch(.7 .1 240), oklch(.7 .1 270), oklch(.7 .1 300), oklch(.7 .1 330), oklch(.7 .1 360));
+}
+
 .NeoWidget,
 .post-card {
     padding: 1rem;
@@ -146,7 +150,7 @@ header.global {
             justify-content: center;
 
             &:not(:hover) {
-                color: var(--Ctext-50);
+                color: var(--Ctext-75);
             }
 
             &>svg {
@@ -159,15 +163,6 @@ header.global {
         display: none;
     }
 
-    &>.kCon {
-        width: fit-content;
-        overflow: hidden;
-        transition: height .2s ease-in-out;
-        display: flex;
-        align-items: center;
-        height: var(--Height);
-    }
-
     &>.toggle {
         padding: 0px;
         height: var(--Height);
@@ -176,6 +171,77 @@ header.global {
         display: none;
         border: none;
         color: var(--Cdisplay);
+    }
+
+    &>.operation-container {
+        position: absolute;
+        height: 100%;
+        top: calc(100% + 1rem);
+        right: 1rem;
+
+        &>* {
+            border-radius: .75rem;
+            background-color: var(--Ccard-bg);
+            padding: .5rem;
+
+            &.palette {
+                transition: opacity .125s ease-in-out, top .125s ease-in-out;
+                position: relative;
+                top: 0rem;
+                opacity: 1;
+                &:not(.on) {
+                    top: -1rem;
+                    pointer-events: none;
+                    opacity: 0;
+                }
+
+                &>.line {
+                    display: flex;
+                    height: 2rem;
+                    padding: .25rem;
+                    box-sizing: border-box;
+
+                    &>* {
+                        width: 2rem;
+                        height: 2rem;
+                        padding: .25rem;
+                        box-sizing: border-box;
+                        background-color: var(--Cbtn-regular-bg);
+                        color: var(--Cbtn-content);
+                        border-radius: .5rem;
+                        text-align: center;
+
+                        &.reset-button:hover {
+                            background-color: var(--Cbtn-regular-bg-hover);
+                        }
+
+                        &.number-show {
+                            margin-left: auto;
+                            width: 4rem;
+                        }
+                    }
+                }
+                &>.scroll {
+                    padding: .25rem;
+                    box-sizing: border-box;
+                    margin-top: .5rem;
+                    &>.scroller {
+                        display: block;
+                        height: 1.5rem;
+                        width: 100%;
+                        border-radius: .25rem;
+                        appearance: none;
+                        background: var(--color-selection-bar);
+                        margin:0;
+                        &::-webkit-slider-thumb {
+                            height: 1.25rem;
+                            width: .75rem;
+                            border-radius: .25rem;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -203,6 +269,7 @@ header.global {
             transition-property: height, top, opacity;
             transition-duration: .125s;
             transition-timing-function: ease-in-out;
+            z-index: 100;
 
             &>a {
                 color: var(--Ctext-50);

@@ -1,4 +1,4 @@
-window.___KContentTable = function () {
+export function toc(){
     let toc, opened = true;
 
     const TOC = (markdown_content) => {
@@ -58,6 +58,4 @@ window.___KContentTable = function () {
         opened = !opened;
     }
     // })
-};
-
-// ___KContentTable();
+}
