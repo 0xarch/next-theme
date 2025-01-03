@@ -4,10 +4,9 @@ append head
     title= page.title
 
 block content
-    .post-meta.NeoWidget
-        +multi-language(page)
-        +post-meta(page,true)
     .post-main.NeoWidget
+        +post-meta(page,true)
+        +multi-language(page)
         article#markdown_fillContent
             != page.content
         +license(page)

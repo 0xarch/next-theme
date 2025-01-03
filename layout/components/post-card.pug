@@ -8,7 +8,7 @@ mixin post-card(item)
             .excerpt!= item.excerpt
             .length
                 - let evlTime = Math.ceil(item.length/250)
-                .wordCount= item.length+' '+__('Characters')
+                .wordCount= item.length+' '+__('words')
                 .hr
                 .evlTime= evlTime+' '+__(evlTime==1?'Minute':'Minutes')
         a.--smooth.readMore(href=url_for(item.relative_path))

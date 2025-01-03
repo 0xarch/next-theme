@@ -1,5 +1,6 @@
 :root {
     color-scheme: light dark;
+    font-family: Roboto, sans-serif, system-ui;
     --hue: var(--config-hue, 250);
     --Wpage-width: min(calc(100% - 2rem), 75rem);
     --Wcon: var(--Wpage-width);
@@ -16,7 +17,8 @@
     --Ctext-50: #0000008d;
     --Ctext-75: #000000bf;
     --Ctext-100: #000;
-    font-family: Roboto, sans-serif, system-ui;
+
+    --card-gap: 1rem;
 }
 
 @media(prefers-color-scheme:dark) {
@@ -109,7 +111,7 @@ body.not-ready {
 #NEO_MAIN {
     display: flex;
     flex-direction: column-reverse;
-    gap: 1rem;
+    gap: var(--card-gap);
     max-width: var(--Wpage-width);
     margin: calc(37.75vh - 4.5rem) auto 0;
 }
@@ -118,7 +120,7 @@ body.not-ready {
 .stickyGroup {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--card-gap);
 }
 
 @media(min-width: 1024px) {

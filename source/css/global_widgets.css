@@ -154,3 +154,21 @@
         }
     }
 }
+
+.banner {
+    display: flex;
+    align-items: center;
+    color: var(--Ctext-75);
+    background-color: var(--Cbtn-regular-bg);
+    margin: 1rem -1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+
+    &:first-child {
+        margin: -1rem -1rem 1rem;
+    }
+
+    &:last-child {
+        margin: 1rem -1rem -1rem;
+    }
+}

@@ -20,7 +20,7 @@ mixin post-meta(post,include_time=false)
             .meta-content
                 .wordCount
                     i.iconBlock.plain!= get_svg('material-symbols:notes-rounded')
-                    span #{post.length} #{__('Characters')}
+                    span #{post.length} #{__('words')}
                 .readTime
                     - let evlTime = Math.ceil(post.length/250)
                     i.iconBlock.plain!= get_svg('material-symbols:schedule-outline-rounded')

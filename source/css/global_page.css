@@ -13,6 +13,10 @@
 
 /* post-fix */
 
+#markdown_fillContent {
+    margin: 1.5em 0;
+}
+
 #markdown_fillContent a {
     text-decoration: noe;
     color: var(--Cbrand);
@@ -20,30 +24,34 @@
 
 h1 {
     font-size: 1.875rem;
-    line-height: 2.25rem
+    line-height: 2.25rem;
+
+    &:first-child {
+        margin-top: 0;
+    }
 }
 
 h2 {
     font-size: 1.5rem;
-    margin: 2em 0 1em
+    margin: 1.5em 0 1em;
 }
 
 h3 {
     font-size: 1.25rem;
-    margin: 1.6em 0 .6em
+    margin: 1.6em 0 .6em;
 }
 
 h4 {
     font-size: 1rem;
-    margin: 1.5em 0 .5em
+    margin: 1.5em 0 .5em;
 }
 
 h5 {
-    font-size: .875rem
+    font-size: .875rem;
 }
 
 h6 {
-    font-size: .5rem
+    font-size: .5rem;
 }
 
 h2,
@@ -186,13 +194,6 @@ blockquote {
 
 .multi-language {
     user-select: none;
-    color: var(--Ctext-75);
-    display: flex;
-    margin: -1rem -1rem 1rem;
-    padding: 1rem;
-    box-sizing: border-box;
-    background-color: var(--Cbtn-regular-bg);
-    align-items: center;
 
     &>.ml-tip {
         margin: 0;

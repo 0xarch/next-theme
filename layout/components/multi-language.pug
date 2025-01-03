@@ -1,6 +1,6 @@
 mixin multi-language(page)
     if page.properties.multi_language
-        .multi-language
+        .multi-language.banner
             p.ml-tip!= __('This article is also available in:')
             .availables
                 each v,k in page.properties.multi_language
