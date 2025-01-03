@@ -1,14 +1,8 @@
 import { join, relative } from "path";
-import { Marked } from "marked";
+import { ltl } from "./language.mjs";
 import SVGS from "./svgs.mjs";
-import markedFootnote from "marked-footnote";
-import extendedTables from "marked-extended-tables";
 
 let SVG_USED = [];
-
-let _marked = new Marked();
-_marked.use(markedFootnote());
-_marked.use(extendedTables());
 
 export default function (ctx) {
     let helpers = {
@@ -62,9 +56,7 @@ export default function (ctx) {
                 version: '4.0'
             }
         },
-        rerender_markdown(str){
-            return _marked.parse(str);
-        }
+        ltl
     };
     ctx.plugin.helpers.array_unique = (array) => [... new Set(array)]
     Object.assign(ctx.plugin.helpers,helpers);

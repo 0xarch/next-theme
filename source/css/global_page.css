@@ -13,6 +13,11 @@
 
 /* post-fix */
 
+#markdown_fillContent a {
+    text-decoration: noe;
+    color: var(--Cbrand);
+}
+
 h1 {
     font-size: 1.875rem;
     line-height: 2.25rem
@@ -175,6 +180,42 @@ blockquote {
 
         &>a {
             width: unset;
+        }
+    }
+}
+
+.multi-language {
+    user-select: none;
+    color: var(--Ctext-75);
+    display: flex;
+    margin: -1rem -1rem 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color: var(--Cbtn-regular-bg);
+    align-items: center;
+
+    &>.ml-tip {
+        margin: 0;
+        margin-right: .25rem;
+    }
+
+    &>.availables {
+        display: flex;
+        gap: .25rem;
+        height: fit-content;
+
+        & a {
+            display: block;
+            box-sizing: border-box;
+            padding: .25rem;
+            color: var(--Cbtn-content);
+            border-radius: .25rem;
+            background: transparent;
+            transition: background .125s ease-in-out;
+
+            &:hover {
+                background-color: var(--Cbtn-regular-bg-hover);
+            }
         }
     }
 }
