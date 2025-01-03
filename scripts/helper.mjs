@@ -1,6 +1,7 @@
 import { join, relative } from "path";
-import { ltl } from "./language.mjs";
+import { _i18n, ltl } from "./language.mjs";
 import SVGS from "./svgs.mjs";
+import { languages } from "./append_page.mjs";
 
 let SVG_USED = [];
 
@@ -56,7 +57,11 @@ export default function (ctx) {
                 version: '4.0'
             }
         },
-        ltl
+        ltl,
+        _i18n: _i18n(ctx),
+        _i18n_lang(current){
+            return languages[current];
+        }
     };
     ctx.plugin.helpers.array_unique = (array) => [... new Set(array)]
     Object.assign(ctx.plugin.helpers,helpers);

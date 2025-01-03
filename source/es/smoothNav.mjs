@@ -6,52 +6,34 @@ const Reload = {
         scrollToTop();
         let NEO_REPLACE_NODE = document.querySelector('#NEO_REPLACE');
         document.querySelector('header.global').classList.remove('collapsed');
-        let least_timer = new Promise(resolve => setTimeout(resolve, 200));
+        let least_timer = new Promise(resolve => setTimeout(resolve, 250)), lang_timer = new Promise(resolve => setTimeout(resolve,500));
         let content = await (await fetch(url)).text();
-        await least_timer;
         let newDocument = DOMParserI.parseFromString(content, 'text/html');
+        let targetLanguage = newDocument.documentElement.lang, currentLanguage = document.documentElement.lang;
+        if(targetLanguage != currentLanguage){
+            document.body.classList.remove('dom-loaded');
+        }
+        await least_timer;
         // set url
         if (!isBack) passedLocation.push(url);
         window.history[isBack ? 'replaceState' : 'pushState']('', '', url);
         // process head.
-        let newTitle = newDocument.head.querySelector('title').innerHTML;
-        let links = [];
-        let unusedNodes = [];
-        for (let childNode of newDocument.head.childNodes) {
-            if (childNode.nodeType !== 1 || childNode.dataset.across) continue;
-            switch (childNode.nodeName) {
-                case 'LINK':
-                    links.push({
-                        rel: childNode.rel,
-                        href: childNode.getAttribute('href')
-                    })
-                    break;
+        document.head.querySelector('title').innerHTML = newDocument.head.querySelector('title').innerHTML;
+        // process multi-language
+        if(targetLanguage != currentLanguage){
+            try {
+                let targetSideWidget = await (await fetch(`/neo/side-widgets.${targetLanguage}/index.html`)).text();
+                document.querySelector('#NEO_SIDE').innerHTML = targetSideWidget;
+                let currentNav = document.body.querySelector('header.global');
+                let targetNav = newDocument.body.querySelector('header.global');
+                currentNav.innerHTML = targetNav.innerHTML;
+                currentNav.removeAttribute('mounted');
+            } catch(e) {
             }
+            document.documentElement.lang = targetLanguage;
+            await lang_timer;
+            document.body.classList.add('dom-loaded');
         }
-        for (let childNode of document.head.childNodes) {
-            if (childNode.nodeType !== 1 || childNode.dataset.across) continue;
-            outer: switch (childNode.nodeName) {
-                case 'TITLE':
-                    childNode.textContent = newTitle;
-                    break;
-                case 'LINK':
-                    for (let i = 0; i < links.length; i++) {
-                        if (childNode.rel == links[i].rel && childNode.href == links[i].href) {
-                            links.splice(i, 1);
-                            break outer;
-                        }
-                    }
-                    unusedNodes.push(childNode);
-                    break;
-            }
-        }
-        links.forEach(v => {
-            let el = document.createElement('link');
-            el.rel = v.rel;
-            el.href = v.href;
-            document.head.appendChild(el);
-        });
-        unusedNodes.forEach(el => el.remove());
         // process body
         document.body.classList.add('not-ready');
         document.body.classList.remove('being-replaced');

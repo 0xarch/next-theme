@@ -1,9 +1,9 @@
-let isInited = false;
-
 export function navBarInit() {
-    if (isInited) return;
     try {
         const NAV_ROOT = document.querySelector('header.global');
+
+        if (NAV_ROOT.getAttribute('mounted') === 'true') return;
+
         const NAV_BAR_TOGGLE = NAV_ROOT.querySelector('.toggle');
         NAV_BAR_TOGGLE.addEventListener('click', () => {
             NAV_ROOT.classList.toggle('collapsed');
@@ -30,11 +30,11 @@ export function navBarInit() {
                 ticking = true;
             }
         });
+        palette();
+        NAV_ROOT.setAttribute('mounted', 'true');
     } catch (e) {
         console.error(e);
     }
-    palette();
-    isInited = true;
 }
 
 function palette() {

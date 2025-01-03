@@ -1,10 +1,19 @@
 import { join } from "path";
 
+let languages = [];
+
 export default function append_page(ctx) {
+    for(let post of ctx.data.posts){
+        if(!languages.includes(post.language)){
+            languages.push(post.language);
+        }
+    }
     ctx.plugin.append_pages.push({
         type: 'side_widget',
         get(ctx) {
-            return [join(ctx.PUBLIC_DIRECTORY, 'neo/side-widgets/index.html')];
+            return [
+                ...languages.map(v=> join(ctx.PUBLIC_DIRECTORY, `neo/side-widgets.${v}/index.html`))
+            ];
         }
     },{
         type: 'page',
@@ -17,3 +26,7 @@ export default function append_page(ctx) {
         }
     });
 }
+
+export {
+    languages
+};

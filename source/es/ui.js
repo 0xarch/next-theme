@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new Promise((resolve, reject) => {
         try {
             if (document.getElementById('NEO_SIDE')) {
-                fetch('/neo/side-widgets/index.html')
+                fetch(`/neo/side-widgets.${document.documentElement.lang}/index.html`)
                     .then((resp) => resp.text())
                     .then((value) => {
                         document.getElementById('NEO_SIDE').innerHTML = value;
