@@ -1,7 +1,7 @@
 extends global_layout.pug
 
 append head
-    title= __('Categories')
+    title #{_container_of('categories',page.current)} - #{__('Categories')} - #{ctx.config.title}
 
 block content
     - let current_container = _container_of('categories',page.current)

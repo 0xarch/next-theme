@@ -1,7 +1,7 @@
 extends global_layout.pug
 
 append head
-    title= 'ARCHIVES'
+    title #{__('Archives')} - #{ctx.config.title}
 
 block content
     .NeoWidget

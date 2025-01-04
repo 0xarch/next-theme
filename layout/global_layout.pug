@@ -30,7 +30,7 @@ html(lang=page.language)
         header.global
             a.--smooth.kLogo(href=url_for('/'))
                 .home-icon!= get_svg('material-symbols:home-outline-rounded')
-                .text!= ctx.config.home_text || `${ctx.config.author}'s Blog`
+                .text!= ctx.config.title || `${ctx.config.author}'s Blog`
             .links
                 a.--smooth.home(href=url_for('/'))= __('Home')
                 a.--smooth.archives(href=url_for('/archives/0/'))= __('Archives')

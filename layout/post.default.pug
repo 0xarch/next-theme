@@ -1,7 +1,7 @@
 extends global_layout.pug
 
 append head
-    title= page.title
+    title #{page.title} - #{ctx.config.title}
 
 block content
     .post-main.NeoWidget
