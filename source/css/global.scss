@@ -18,7 +18,16 @@
     --Ctext-75: #000000bf;
     --Ctext-100: #000;
 
+    @each $percent in (100, 75, 50, 25) {
+        --card-corner-#{$percent}: #{calc($percent / 100)}rem;
+    }
+
     --card-gap: 1rem;
+    --card-corner: 1rem;
+    --card-corner-circle: 99rem;
+    --card-shadow: 0 4px 10px rgba(0, 0, 0, .05),
+    0 0 1px rgba(0, 0, 0, .1);
+    --card-padding: 1rem;
 }
 
 @media(prefers-color-scheme:dark) {

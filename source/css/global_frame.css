@@ -4,8 +4,9 @@
 
 .NeoWidget,
 .post-card {
-    padding: 1rem;
-    border-radius: 1rem;
+    padding: var(--card-padding);
+    border-radius: var(--card-corner);
+    box-shadow: var(--card-shadow);
     background: var(--Ccard-bg);
     box-sizing: border-box;
 }
@@ -49,26 +50,25 @@
 }
 
 header.global {
-    padding-left: 1rem;
-    padding-right: 1rem;
     --Height: 4.5rem;
     color-scheme: light dark;
     min-height: var(--Height);
     position: sticky;
     top: 0px;
-    background-color: var(--Ccard-bg);
-    backdrop-filter: blur(10px);
-    transition-property: width, height, top, color, background-color;
-    transition-duration: .15s;
-    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
-    border-radius: 0 0 1rem 1rem;
-    box-sizing: border-box;
     z-index: 1100;
+    box-sizing: border-box;
     width: var(--Wpage-width);
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
+    padding: 0 1rem;
+    border-radius: 0 0 var(--card-corner) var(--card-corner);
+    box-shadow: var(--card-shadow);
+    background-color: var(--Ccard-bg);
+    transition-property: width, height, top, color, background-color;
+    transition-duration: .15s;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
 
     & a {
         text-decoration: none;

@@ -1,0 +1,171 @@
+.side.user-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & a {
+        text-decoration: none;
+    }
+
+    & .avatar {
+        width: 15.5rem;
+        height: 15.5rem;
+        object-fit: cover;
+        object-position: center;
+        border-radius: var(--card-corner-75);
+    }
+
+
+    .socialLinks {
+        display: flex;
+        align-items: center;
+        margin: 1rem 1rem 0;
+        gap: 1rem;
+
+        & .link {
+            height: 2.5rem;
+            width: 2.5rem;
+            font-size: 1.5rem;
+            border-radius: var(--card-corner-75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--Cbtn-content);
+            background-color: var(--Cbtn-regular-bg);
+            transition: background-color .25s ease-in-out;
+
+            & i {
+                font-family: "Font Awesome 6 Brands";
+                font-style: normal;
+            }
+
+            &:hover {
+                background-color: var(--Cbtn-regular-bg-hover);
+            }
+        }
+    }
+}
+
+.side.user-intro .userName {
+    line-height: 1.25;
+    position: relative;
+    display: block;
+    text-align: center;
+    margin: .75rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    width: fit-content;
+
+    & a {
+        transition: color .25s ease-in-out;
+        color: var(--Cdisplay);
+
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: calc(100% + .5rem);
+        height: .25rem;
+        left: calc(50% - .5rem);
+        width: 1rem;
+        background-color: var(--Cbrand);
+        border-radius: var(--card-corner-circle);
+        pointer-events: none;
+        transition-property: left, width;
+        transition-duration: .25s;
+        transition-timing-function: ease-in-out;
+
+    }
+
+    &:hover a {
+        color: var(--Cbrand);
+
+        &::after {
+            left: calc(50% - 1rem);
+            width: 2rem;
+
+        }
+    }
+}
+
+@each $type in (category, tag) {
+    .side.#{$type}-list {
+        & a {
+            text-decoration: none;
+        }
+
+        &>h2 {
+            line-height: 1.25rem;
+            font-size: 1.25rem;
+            margin: .75rem 1rem 1rem;
+            position: relative;
+
+            &::before {
+                content: '';
+                background-color: var(--Cbrand);
+                width: .25rem;
+                height: 100%;
+                left: -.75rem;
+                position: absolute;
+                display: block;
+                border-radius: var(--card-corner-circle);
+            }
+        }
+    }
+}
+
+.side.category-list>.cates-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: .5rem;
+
+    &>.cate {
+        border-radius: var(--card-corner-50);
+        display: flex;
+        padding: .5rem;
+        align-items: center;
+        color: var(--Ctext-75);
+        background: transparent;
+        transition: background-color .2s ease-in-out, color .2s ease-in-out;
+
+        &:hover {
+            color: var(--Cbtn-content);
+            background: var(--Cbtn-regular-bg);
+        }
+
+        &::after {
+            content: attr(data-count);
+            color: var(--Cbtn-content);
+            background-color: var(--Cbtn-regular-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-left: auto;
+            border-radius: var(--card-corner-50);
+        }
+    }
+}
+
+.side.tag-list>.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: .5rem;
+
+    &>.tag {
+        border-radius: var(--card-corner-50);
+        display: block;
+        padding: .5rem;
+        color: var(--Cbtn-content);
+        background: var(--Cbtn-regular-bg);
+        transition: background-color .2s ease-in-out;
+
+        &:hover {
+            background-color: var(--Cbtn-regular-bg-hover);
+        }
+    }
+}

@@ -5,7 +5,7 @@
     max-width: 100%;
     background-color: #0000;
     transition: background-color .25s ease-in-out;
-    border-radius: .75rem;
+    border-radius: var(--card-corner-75);
     margin: 0 1rem;
 
     &:hover {
@@ -59,7 +59,7 @@
             height: 0;
             top: 50%;
             left: .5rem;
-            border-radius: 1rem;
+            border-radius: var(--card-corner-circle);
             background-color: var(--Cbtn-content);
             transition-property: top, height, background-color;
             transition-duration: .25s;

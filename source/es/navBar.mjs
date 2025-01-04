@@ -1,13 +1,6 @@
 export function navBarInit() {
     try {
         const NAV_ROOT = document.querySelector('header.global');
-
-        if (NAV_ROOT.getAttribute('mounted') === 'true') return;
-
-        const NAV_BAR_TOGGLE = NAV_ROOT.querySelector('.toggle');
-        NAV_BAR_TOGGLE.addEventListener('click', () => {
-            NAV_ROOT.classList.toggle('collapsed');
-        });
         // Global Focus
         let lastKnownScrollPosition = 0;
         let ticking = false;
@@ -31,31 +24,56 @@ export function navBarInit() {
             }
         });
         palette();
+        hamburger();
         NAV_ROOT.setAttribute('mounted', 'true');
     } catch (e) {
         console.error(e);
     }
 }
 
+/**
+ * 
+ * @param {Element} triggerElement 
+ * @param {Element} targetElement 
+ * @param {(on: boolean) => any} callback 
+ * @returns {(ev: Event) => void}
+ */
+function __listen(triggerElement, targetElement, callback) {
+    let on = false;
+    let event = (e) => {
+        if (e.target === triggerElement || e.target === targetElement || triggerElement.contains(e.target) || targetElement.contains(e.target)) {
+            return;
+        } else {
+            on = false;
+            callback();
+        }
+    };
+    triggerElement.addEventListener('click', () => {
+        on = !on;
+        callback(on);
+        if (on) {
+            document.addEventListener('click', event);
+        } else {
+            document.removeEventListener('click', event);
+        }
+    });
+    return event;
+}
+
+function hamburger() {
+    const NAV_ROOT = document.querySelector('header.global');
+    const NAV_BAR_TOGGLE = NAV_ROOT.querySelector('.toggle');
+    const menuElement = NAV_ROOT.querySelector('.links');
+    __listen(NAV_BAR_TOGGLE, menuElement, (panelIsOn) => {
+        NAV_ROOT.classList[panelIsOn ? 'add' : 'remove']('collapsed');
+    });
+}
+
 function palette() {
     let paletteButton = document.querySelector('header.global .operations .palette');
     let palettePanel = document.querySelector('header.global .operation-container .palette');
-    let panelIsOn = false;
-    let listenter = (e) => {
-        if (e.target === paletteButton || e.target === palettePanel || palettePanel.contains(e.target) || paletteButton.contains(e.target)) {
-            return;
-        } else {
-            paletteButton.click();
-        }
-    };
-    paletteButton.addEventListener('click', () => {
-        panelIsOn = !panelIsOn;
-        palettePanel.classList[panelIsOn ? 'add' : 'remove']('on');
-        if (panelIsOn) {
-            document.addEventListener('click', listenter);
-        } else {
-            document.removeEventListener('click', listenter);
-        }
+    __listen(paletteButton, palettePanel,(on)=>{
+        palettePanel.classList[on ? 'add' : 'remove']('on');
     });
     let numberShower = palettePanel.querySelector('.number-show');
     let resetter = palettePanel.querySelector('.reset-button');

@@ -146,18 +146,19 @@ blockquote {
 
 .next-page {
     display: flex;
-    gap: 1rem;
+    gap: var(--card-gap);
 
     &>a {
         text-decoration: none;
-        border-radius: 1rem;
+        color: var(--Ctext-75);
         background-color: var(--Ccard-bg);
-        padding: 1rem;
+        border-radius: var(--card-corner);
+        padding: var(--card-padding);
+        box-shadow: var(--card-shadow);
         display: flex;
         align-items: center;
-        width: calc(100% - .5rem);
+        width: calc(100% - var(--card-gap)/2);
         transition: color .25s ease-in-out, background-color .25s ease-in-out;
-        color: var(--Ctext-75);
 
         &:hover {
             color: var(--Cbtn-content);
