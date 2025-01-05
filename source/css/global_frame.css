@@ -560,10 +560,10 @@ footer.global {
         }
 
         &:not([href]):not(.now) {
-            color: var(--Ctext-25)
+            color: var(--Ctext-25);
         }
 
-        &[href]:hover {
+        &[href]:not(:now):hover {
             background-color: var(--Cbtn-plain-bg-hover);
         }
     }
