@@ -2,15 +2,13 @@ mixin page-navigator(total,now,name)
     .page-navigator
         - let targets = array_unique([...range(now-2,now+2)].filter(v => v>0 && v<total-1))
         a.--smooth.prev(href=now>0?url_for(`/${name}/${now-1}`):void 0)!= get_svg('material-symbols:chevron-right-rounded')
-        if total == 1
-            a.--smooth(href=url_for(`/${name}/0`))!= 1
-        else
-            a.--smooth(href=url_for(`/${name}/0`))!= 1
+        a.--smooth(href=url_for(`/${name}/0`),class=now==0&&'now')!= 1
+        if total != 1
             if now > 3
                 a.--smooth.disabled ...
             for target in targets
                 a.--smooth(href=url_for(`/${name}/${target}`),class=target==now&&'now') #{target+1}
             if total - now > 3
                 a.--smooth.disabled ...
-            a.--smooth(href=url_for(`/${name}/${total-1}`))!= total
+            a.--smooth(href=url_for(`/${name}/${total-1}`),class=now==total-1&&'now')!= total
         a.--smooth.next(href=now<total-1?url_for(`/${name}/${now+1}`):void 0)!= get_svg('material-symbols:chevron-right-rounded')
