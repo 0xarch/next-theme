@@ -18,7 +18,7 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    border-radius: .5rem;
+    border-radius: var(--card-corner-50);
     background-color: var(--Cbtn-regular-bg);
     color: var(--Cbtn-content);
 
@@ -112,7 +112,7 @@ header.global {
             opacity: 0;
             transition: transform .125s ease-in-out, opacity .125s ease-in-out;
             z-index: -1;
-            border-radius: .5rem;
+            border-radius: var(--card-corner-50);
         }
 
         &:hover::before {
@@ -188,7 +188,7 @@ header.global {
         right: 1rem;
 
         &>* {
-            border-radius: .75rem;
+            border-radius: var(--card-corner-75);
             background-color: var(--Ccard-bg);
             padding: .5rem;
 
@@ -216,7 +216,7 @@ header.global {
                         box-sizing: border-box;
                         background-color: var(--Cbtn-regular-bg);
                         color: var(--Cbtn-content);
-                        border-radius: .5rem;
+                        border-radius: var(--card-corner-50);
                         text-align: center;
                         display: flex;
                         justify-content: center;
@@ -240,14 +240,14 @@ header.global {
                         display: block;
                         height: 1.5rem;
                         width: 100%;
-                        border-radius: .25rem;
+                        border-radius: var(--card-corner-25);
                         appearance: none;
                         background: var(--color-selection-bar);
                         margin:0;
                         &::-webkit-slider-thumb {
                             height: 1.25rem;
                             width: .75rem;
-                            border-radius: .25rem;
+                            border-radius: var(--card-corner-25);
                         }
                     }
                 }
@@ -279,7 +279,7 @@ header.global {
             padding: .5rem;
             gap: .25rem;
             background-color: var(--Ccard-bg);
-            border-radius: .75rem;
+            border-radius: var(--card-corner-75);
             flex-direction: column;
             opacity: 0;
             pointer-events: none;
@@ -432,7 +432,7 @@ footer.global {
     width: 3.25rem;
     position: relative;
     overflow: hidden;
-    border-radius: .75rem;
+    border-radius: var(--card-corner-75);
     margin-left: auto;
 
     .post-card.image>& {
@@ -532,7 +532,7 @@ footer.global {
         width: 3rem;
         align-items: center;
         justify-content: center;
-        border-radius: .5rem;
+        border-radius: var(--card-corner-50);
         background: var(--Ccard-bg);
         color: var(--Cbrand);
         cursor: pointer;

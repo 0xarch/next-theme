@@ -73,7 +73,7 @@ code {
     padding: .25rem;
     color: var(--Cdisplay);
     background-color: var(--Cbg);
-    border-radius: .25rem;
+    border-radius: var(--card-corner-25);
 }
 
 pre code,
@@ -83,7 +83,7 @@ pre code.hljs {
     font-family: 'Hack', monospace, 'monospace';
     background-color: var(--Cbg);
     color: var(--Cdisplay);
-    border-radius: .5rem;
+    border-radius: var(--card-corner-50);
     position: relative;
     font-size: 1rem;
     line-height: 1.5;
@@ -98,7 +98,7 @@ pre code.hljs {
 pre {
     position: relative;
     padding-left: 2rem;
-    border-radius: .5rem;
+    border-radius: var(--card-corner-50);
     background-color: var(--Cbg);
 }
 
@@ -126,7 +126,7 @@ pre>.line-index>i {
 
 blockquote {
     margin: .25rem;
-    border-radius: .5rem;
+    border-radius: var(--card-corner-50);
     padding: .25rem .75rem;
     background-color: var(--Cbg);
     width: fit-content;
@@ -211,7 +211,7 @@ blockquote {
             box-sizing: border-box;
             padding: .25rem;
             color: var(--Cbtn-content);
-            border-radius: .25rem;
+            border-radius: var(--card-corner-25);
             background: transparent;
             transition: background .125s ease-in-out;
 
