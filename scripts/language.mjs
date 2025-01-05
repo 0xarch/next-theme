@@ -1,8 +1,9 @@
 const language = {
     'en-US': 'English',
     'en-GB': 'English',
-    'zh-CN': '中文',
-    'zh-TW': '中文'
+    'zh-CN': '简体中文',
+    'zh-TW': '繁体中文',
+    'fr': '法语'
 }
 
 export function ltl(lang) {

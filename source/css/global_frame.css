@@ -357,7 +357,7 @@ footer.global {
 }
 
 .post-card>.contentBox {
-    width: 100%;
+    width: calc(100% - 3.25rem);
     padding: .75rem 1.25rem;
     display: flex;
     flex-direction: column;
@@ -367,6 +367,7 @@ footer.global {
 
 .post-card.image>.contentBox {
     width: 72%;
+    max-width: 72%;
 }
 
 .post-card>.contentBox>.title>a {
@@ -381,6 +382,9 @@ footer.global {
 .post-card>.contentBox>.title>a>h2 {
     margin: 0;
     font-size: 1.875rem;
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .post-card>.contentBox>.post-meta {
@@ -434,6 +438,8 @@ footer.global {
     overflow: hidden;
     border-radius: var(--card-corner-75);
     margin-left: auto;
+    background-position: center center;
+    background-size: cover;
 
     .post-card.image>& {
         width: 28%;
@@ -533,10 +539,12 @@ footer.global {
         align-items: center;
         justify-content: center;
         border-radius: var(--card-corner-50);
-        background: var(--Ccard-bg);
+        background-color: var(--card-bg);
+        box-shadow: var(--card-shadow);
         color: var(--Cbrand);
         cursor: pointer;
         font-weight: 900;
+        transition: background-color .125s ease-in-out;
 
         &.prev {
             transform: rotate(180deg)
@@ -553,6 +561,10 @@ footer.global {
 
         &:not([href]):not(.now) {
             color: var(--Ctext-25)
+        }
+
+        &[href]:hover {
+            background-color: var(--Cbtn-plain-bg-hover);
         }
     }
 }

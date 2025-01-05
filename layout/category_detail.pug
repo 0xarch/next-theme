@@ -1,11 +1,12 @@
 extends global_layout.pug
 
 append head
-    title #{_container_of('categories',page.current)} - #{__('Categories')} - #{ctx.config.title}
+    title #{_container_of('categories',page.current).key} - #{__('Categories')} - #{ctx.config.title}
 
 block content
     - let current_container = _container_of('categories',page.current)
     .NeoWidget
+        h2.archive-label #{current_container.key}
         ul.index-ul
             each post in current_container.values
                 li

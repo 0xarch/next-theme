@@ -18,6 +18,8 @@ block content
             - let v= y[k]
             h2.archive-label
                 .year=k
+                .ball(aria-hidden=true)
+                .count= v.length == 1 ? __(`${v.length} article`) : __(`${v.length} articles`)
             ul.index-ul
                 each post in v
                     li

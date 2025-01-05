@@ -7,8 +7,43 @@
     gap: 1rem;
 }
 
+/* Archive */
+
 .archive-label {
-    margin-left: 3rem;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+    
+    &>.year {
+        font-size: 1.5rem;
+        line-height: 1.75rem;
+        width: 4rem;
+        height: 2rem;
+        padding-bottom: .25rem;
+        text-align: right;
+        box-sizing: border-box;
+    }
+
+    &>.ball {
+        width: 3.75rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        &::before {
+            content: '';
+            border: .2rem solid var(--Cbrand);
+            margin: 0 auto;
+            width: .65rem;
+            height: .65rem;
+            display: block;
+            border-radius: var(--card-corner-circle);
+        }
+    }
+
+    &>.count {
+        color: var(--Ctext-25);
+        font-size: 1rem;
+    }
 }
 
 /* post-fix */

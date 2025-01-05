@@ -38,6 +38,17 @@
             margin-right: auto;
             overflow: hidden;
             text-overflow: ellipsis;
+            text-wrap: nowrap;
+        }
+
+        &>.title::before {
+            content: '';
+            display: inline-block;
+            width: 1.75rem;
+            height: 100%;
+            position: relative;
+            box-sizing: border-box;
+            margin-right: 1rem;
         }
 
         &>.append {
@@ -49,28 +60,6 @@
                 display: inline;
             }
 
-        }
-
-        &::before {
-            content: '';
-            position: absolute;
-            display: block;
-            width: .35rem;
-            height: 0;
-            top: 50%;
-            left: .5rem;
-            border-radius: var(--card-corner-circle);
-            background-color: var(--Cbtn-content);
-            transition-property: top, height, background-color;
-            transition-duration: .25s;
-            transition-timing-function: ease-in-out;
-        }
-
-        &:hover {
-            &::before {
-                top: calc(50% - .5rem);
-                height: 1rem;
-            }
         }
     }
 }

@@ -7,7 +7,7 @@
     --Cbrand: oklch(.7 .14 var(--hue));
     --Cdisplay: #000000bf;
     --Cbg: oklch(.95 .01 var(--hue));
-    --Ccard-bg: white;
+    --Ccard-bg: var(--card-bg);
     --Ccard-bg-hover: oklch(.98 .005 var(--hue));
     --Cbtn-plain-bg-hover: oklch(.95 .025 var(--hue));
     --Cbtn-content: oklch(.55 .12 var(--hue));
@@ -19,11 +19,12 @@
     --Ctext-100: #000;
 
     @each $percent in (100, 75, 50, 25) {
-        --card-corner-#{$percent}: #{calc($percent / 400)}rem;
+        --card-corner-#{$percent}: #{calc($percent / 100)}rem;
     }
 
+    --card-bg: white;
     --card-gap: 1rem;
-    --card-corner: .25rem;
+    --card-corner: var(--card-corner-100);
     --card-corner-circle: 99rem;
     --card-shadow: 0 4px 10px rgba(0, 0, 0, .05),
     0 0 1px rgba(0, 0, 0, .1);
@@ -35,7 +36,6 @@
         --Cbrand: oklch(.75 .14 var(--hue));
         --Cdisplay: #ffffffbf;
         --Cbg: oklch(.16 .014 var(--hue));
-        --Ccard-bg: oklch(.23 .015 var(--hue));
         --Ccard-bg-hover: oklch(.3 .03 var(--hue));
         --Cbtn-plain-bg-hover: oklch(.3 .035 var(--hue));
         --Cbtn-content: oklch(.75 .1 var(--hue));
@@ -45,6 +45,8 @@
         --Ctext-50: #ffffff8d;
         --Ctext-75: #ffffffbf;
         --Ctext-100: #fff;
+
+        --card-bg: oklch(.23 .015 var(--hue));
     }
 }
 
@@ -72,24 +74,24 @@ body {
     font-family: Roboto, sans-serif, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji"
 }
 
-// body::before {
-//     content: '';
-//     position: absolute;
-//     background-image: url("/banner.webp");
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     height: 46.25vh;
-//     width: 100%;
-//     background-position: center;
-//     pointer-events: none;
-//     background-color: var(--Cbg);
-//     opacity: 0;
-//     transform: scale(1.1);
-//     top: 2rem;
-//     transition-property: opacity, top, transform, height;
-//     transition-duration: .25s;
-//     transition-timing-function: ease-in-out;
-// }
+body::before {
+    content: '';
+    position: absolute;
+    background-image: url("/banner.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 46.25vh;
+    width: 100%;
+    background-position: center;
+    pointer-events: none;
+    background-color: var(--Cbg);
+    opacity: 0;
+    transform: scale(1.1);
+    top: 2rem;
+    transition-property: opacity, top, transform, height;
+    transition-duration: .25s;
+    transition-timing-function: ease-in-out;
+}
 
 body.loaded::before {
     opacity: 1;
@@ -122,7 +124,7 @@ body.not-ready {
     flex-direction: column-reverse;
     gap: var(--card-gap);
     max-width: var(--Wpage-width);
-    margin: var(--card-gap) auto 0;
+    margin: calc(37.75vh - 4.5rem) auto 0;
 }
 
 #NEO_MAIN>:is(.mainCon, .sideCon),
