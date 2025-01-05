@@ -48,6 +48,16 @@
 
 /* post-fix */
 
+.post-img {
+    margin: 1rem 0;
+    width: 100%;
+    &>img {
+        width: 100%;
+        max-height: 100%;
+        border-radius: var(--card-corner-75);
+    }
+}
+
 #markdown_fillContent {
     margin: 1.5em 0;
 }

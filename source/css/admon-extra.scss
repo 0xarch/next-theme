@@ -3,21 +3,53 @@
     padding: 0 1rem 0 1.25rem;
     position: relative;
     line-height: 1.5rem;
+    margin: 1rem -1rem;
+    padding: 1rem 1.5rem;
+    box-sizing: border-box;
+    color: var(--aclr);
+
+    &:first-child {
+        margin: -1rem -1rem 1rem;
+    }
+
+    &:last-child {
+        margin: 1rem -1rem -1rem;
+    }
+
+    &+&{
+        margin: 0 -1rem;
+    }
+
+    & pre {
+        &::before {
+            background-color: var(--aclr);
+            opacity: 0;
+            position: absolute;
+            inset: 0;
+            content: '';
+            opacity: .125;
+            border-radius: var(--card-corner-75);
+        }
+        background-color: transparent;
+
+        &>code, &>.line-index {
+            background-color: transparent;
+        }
+    }
 }
 
 .admonition::before {
     content: '';
-    left: 0;
-    width: .25rem;
-    top: -.25rem;
-    height: calc(100% + .5rem);
-    background-color: var(--aclr);
-    border-radius: 1rem;
-    display: block;
     position: absolute;
+    inset: 0;
+    background-color: var(--aclr);
+    display: block;
+    opacity: .125;
+    pointer-events: none;
 }
 
 .admonition>.admonition-title {
+    margin-top: 0;
     color: var(--aclr);
     font-weight: 900;
     line-height: 1.5rem;

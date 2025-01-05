@@ -6,6 +6,9 @@ append head
 block content
     .post-main.NeoWidget
         +post-meta(page,true)
+        if(page.properties.image)
+            .post-img
+                img(src=page.properties.image,alt='The image of this article.')
         +multi-language(page)
         article#markdown_fillContent
             != page.content
