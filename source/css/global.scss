@@ -227,7 +227,7 @@ body:not(.dom-loaded) .loading-circle {
 }
 
 .loading-circle::before {
-    $r: .5rem;
+    $r: 5rem;
     content: '';
     display: block;
     width: calc($r / 1.15);

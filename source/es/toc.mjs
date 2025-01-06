@@ -1,8 +1,14 @@
-export async function toc(){
+export async function toc() {
 
     const TOC = (markdown_content, toc) => {
-        if (!markdown_content) console.error(`No {markdown_content} specified.`);
-        if (!toc) console.error(`No {toc} specified.`);
+        if (!markdown_content) {
+            console.error(`No {markdown_content} specified.`);
+            return;
+        }
+        if (!toc) {
+            console.error(`No {toc} specified.`);
+            return;
+        }
         let tocList = markdown_content.querySelectorAll("h2, h3, h4, h5, h6");
         let liList = [];
         tocList.forEach((v) => {
@@ -23,7 +29,7 @@ export async function toc(){
             liList.forEach(v => v.classList.remove("active"));
         }
         const update = () => {
-            if(window.scrollY > visualViewport.height / 100 * 46.25){
+            if (window.scrollY > visualViewport.height / 100 * 46.25) {
                 toc.classList.remove('hide');
                 for (let i = 0; i < tocArr.length; i++) {
                     let v = tocArr[i];
