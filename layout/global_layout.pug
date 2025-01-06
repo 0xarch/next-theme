@@ -27,6 +27,7 @@ html(lang=page.language)
             script(data-across='1',type="module",src=url_for('es/ui.js'))
 
     body(OCP='OVERRIDE')
+        .loading-circle(aria-hidden=true)
         header.global
             a.--smooth.kLogo(href=url_for('/'))
                 .home-icon!= get_svg('material-symbols:home-outline-rounded')
