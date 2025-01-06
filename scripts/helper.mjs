@@ -2,7 +2,7 @@ import { join, relative } from "path";
 import { _i18n, ltl } from "./language.mjs";
 import SVGS from "./svgs.mjs";
 import { languages } from "./append_page.mjs";
-import { get_fa_brand } from "./fotawesome.mjs";
+import { get_fa_brand } from "./fontawesome.mjs";
 
 let SVG_USED = [];
 
