@@ -1,12 +1,12 @@
-export function toc(){
-    let toc, opened = true;
+export async function toc(){
 
-    const TOC = (markdown_content) => {
-        if (!markdown_content) return;
-        if (!toc) return;
-        let tocList = markdown_content.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    const TOC = (markdown_content, toc) => {
+        if (!markdown_content) console.error(`No {markdown_content} specified.`);
+        if (!toc) console.error(`No {toc} specified.`);
+        let tocList = markdown_content.querySelectorAll("h2, h3, h4, h5, h6");
         let liList = [];
         tocList.forEach((v) => {
+            console.log(tocList);
             const H = v.nodeName[1];
             let li = document.createElement('li');
             li.classList.add(`li-${H}`);
@@ -23,16 +23,21 @@ export function toc(){
             liList.forEach(v => v.classList.remove("active"));
         }
         const update = () => {
-            for (let i = 0; i < tocArr.length; i++) {
-                let v = tocArr[i];
-                let rect = v.getBoundingClientRect();
-                let top = rect.top + rect.height;
-                if (top > 0) {
-                    removeClass();
-                    let li = liList[i];
-                    li.classList.add('active');
-                    break;
+            if(window.scrollY > visualViewport.height / 100 * 46.25){
+                toc.classList.remove('hide');
+                for (let i = 0; i < tocArr.length; i++) {
+                    let v = tocArr[i];
+                    let rect = v.getBoundingClientRect();
+                    let top = rect.top + rect.height;
+                    if (top > 0) {
+                        removeClass();
+                        let li = liList[i];
+                        li.classList.add('active');
+                        break;
+                    }
                 }
+            } else {
+                toc.classList.add('hide');
             }
         }
         let ticking = false;
@@ -48,14 +53,7 @@ export function toc(){
         update();
     }
 
-    // document.addEventListener('DOMContentLoaded', () => {
-    toc = document.querySelector('.KContentTable>.kTOC')
-    let md_content = document.getElementById('markdown_fillContent')
-    TOC(md_content);
-    let openButton = document.querySelector('.KContentTable>.kButton');
-    if (openButton) openButton.onclick = () => {
-        toc.style.display = opened ? 'block' : 'none';
-        opened = !opened;
-    }
-    // })
+    let toc = document.getElementById('markdown_TOC');
+    let md_content = document.getElementById('markdown_fillContent');
+    TOC(md_content, toc);
 }

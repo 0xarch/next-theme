@@ -1,3 +1,5 @@
+@use "./_declaration.scss" as *;
+
 .side.user-intro {
     display: flex;
     flex-direction: column;
@@ -12,7 +14,7 @@
         height: 15.5rem;
         object-fit: cover;
         object-position: center;
-        border-radius: var(--card-corner-75);
+        border-radius: $card-corner-75;
     }
 
 
@@ -26,7 +28,7 @@
             height: 2.5rem;
             width: 2.5rem;
             font-size: 1.5rem;
-            border-radius: var(--card-corner-75);
+            border-radius: $card-corner-75;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -70,7 +72,7 @@
         left: calc(50% - .5rem);
         width: 1rem;
         background-color: var(--Cbrand);
-        border-radius: var(--card-corner-circle);
+        border-radius: $card-corner-circle;
         pointer-events: none;
         transition-property: left, width;
         transition-duration: .25s;
@@ -109,7 +111,7 @@
                 left: -.75rem;
                 position: absolute;
                 display: block;
-                border-radius: var(--card-corner-circle);
+                border-radius: $card-corner-circle;
             }
         }
     }
@@ -122,7 +124,7 @@
     gap: .5rem;
 
     &>.cate {
-        border-radius: var(--card-corner-50);
+        border-radius: $card-corner-50;
         display: flex;
         padding: .5rem;
         align-items: center;
@@ -145,7 +147,7 @@
             width: 1.5rem;
             height: 1.5rem;
             margin-left: auto;
-            border-radius: var(--card-corner-50);
+            border-radius: $card-corner-50;
         }
     }
 }
@@ -157,7 +159,7 @@
     gap: .5rem;
 
     &>.tag {
-        border-radius: var(--card-corner-50);
+        border-radius: $card-corner-50;
         display: block;
         padding: .5rem;
         color: var(--Cbtn-content);
@@ -167,5 +169,90 @@
         &:hover {
             background-color: var(--Cbtn-regular-bg-hover);
         }
+    }
+}
+
+#markdown_TOC {
+    display: none;
+}
+
+@media( min-width: 1024px) {
+    #markdown_TOC {
+        position: fixed;
+        list-style: none;
+        top: 5rem;
+        right: calc($card-gap * 1.5);
+        width: calc((100vw - var(--Wpage-width))/2 - 3 * $card-gap);
+        display: flex;
+        flex-direction: column;
+        counter-reset: toc_counter_h2;
+        color: var(--Ctext-50);
+        line-height: 1.5rem;
+        opacity: 1;
+        transition: opacity .125s ease-in-out;
+    }
+
+    #markdown_TOC.hide {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    #markdown_TOC>*{
+        cursor: pointer;
+        display: flex;
+        border-radius: $card-corner-50;
+        transition: background-color .125s ease-in-out, color .125s ease-in-out;
+    }
+
+    #markdown_TOC .li-2 {
+        font-weight: bold;
+        height: 1.5rem;
+        margin: .25rem 0;
+        padding: .25rem;
+    }
+
+    #markdown_TOC .li-2::before{
+        counter-increment: toc_counter_h2;
+        content: counter(toc_counter_h2);
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        font-size: .975rem;
+        margin-right: .5rem;
+        border-radius: $card-corner-50;
+        background-color: var(--Cbtn-regular-bg);
+        color: var(--Cbtn-content);
+        text-align: center;
+        font-family: "Hack", "monospace", monospace;
+    }
+
+    @each $level in (3,4,5,6) {
+        #markdown_TOC .li-#{$level} {
+            color: var(--Ctext-50);
+            line-height: 1.5rem;
+            height: 1.5rem;
+            margin: .25rem 0;
+            padding: .25rem;
+            padding-left: calc(sqrt($level) * .25rem + .25rem);
+        }
+
+        #markdown_TOC .li-#{$level}::before {
+            content: '';
+            display: inline-block;
+            height: 1.5rem;
+            width: 1.5rem;
+            box-sizing: border-box;
+            border-radius: $card-corner-circle;
+            background-image: radial-gradient(50% 50%, var(--Cbtn-regular-bg) 30%, transparent 30%);
+        }
+    }
+
+    #markdown_TOC>*.active {
+        color: var(--Cbrand);
+    }
+
+    #markdown_TOC>*:hover {
+        background-color: var(--Cbtn-regular-bg);
     }
 }

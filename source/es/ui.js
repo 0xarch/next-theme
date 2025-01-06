@@ -1,4 +1,5 @@
 import { navBarInit } from './navBar.mjs';
+import { toc } from './toc.mjs';
 import Reload from './smoothNav.mjs';
 
 ((window) => {
@@ -19,12 +20,7 @@ import Reload from './smoothNav.mjs';
 function DoOthers() {
     document.body.classList.remove('main-anim-finished');
     // TOC
-    (async () => {
-        await import('./KContentTable.js');
-        setTimeout(() => {
-            ___KContentTable();
-        }, 1);
-    })();
+    toc();
     // NavigationBar
     navBarInit();
     // Smooth Navigate
@@ -44,7 +40,7 @@ function DoOthers() {
             let code = element.querySelector('code');
             let con = document.createElement('div'), len = code.textContent.split("\n").length;
             con.classList.add('line-index');
-            con.setAttribute('aria-hidden',true);
+            con.setAttribute('aria-hidden', true);
             for (let i = 1; i < len; i++) {
                 let index_el = document.createElement('i');
                 index_el.textContent = i;
