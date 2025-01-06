@@ -2,6 +2,7 @@ import { join, relative } from "path";
 import { _i18n, ltl } from "./language.mjs";
 import SVGS from "./svgs.mjs";
 import { languages } from "./append_page.mjs";
+import { get_fa_brand } from "./fotawesome.mjs";
 
 let SVG_USED = [];
 
@@ -57,6 +58,7 @@ export default function (ctx) {
                 version: '4.0'
             }
         },
+        get_fa_brand,
         ltl,
         _i18n: _i18n(ctx),
         _i18n_lang(current){

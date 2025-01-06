@@ -21,7 +21,7 @@
     --Ctext-100: #000;
 
     @each $percent, $value in (100, $card-corner-100), (75, $card-corner-75), (50,$card-corner-50), (25,$card-corner-25) {
-        --card-corner-#{$percent}: $value;
+        --card-corner-#{$percent}: #{$value};
     }
 
     --card-bg: white;

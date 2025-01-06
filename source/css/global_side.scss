@@ -36,9 +36,8 @@
             background-color: var(--Cbtn-regular-bg);
             transition: background-color .25s ease-in-out;
 
-            & i {
-                font-family: "Font Awesome 6 Brands";
-                font-style: normal;
+            & svg{
+                height: 1em;
             }
 
             &:hover {

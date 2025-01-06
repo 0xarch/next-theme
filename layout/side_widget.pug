@@ -6,8 +6,7 @@
     .intro= (ctx.config.data && (ctx.config.data.intro || ctx.config.data.announcement)) || 'The stupid one'
     .socialLinks
         each val,key in ctx.config.social_links || {}
-            a.link(href=val.url,title=key)
-                i(class=val['fa-icon'])
+            a.link(href=val.url,title=key)!=get_fa_brand(val.icon)
 .stickyGroup
     .side.category-list.NeoWidget
         h2= _i18n('Categories',_i18n_lang(page.current))

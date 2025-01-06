@@ -281,7 +281,7 @@ header.global {
             padding: .5rem;
             gap: .25rem;
             background-color: var(--Ccard-bg);
-            border-radius: var(--card-corner-75);
+            border-radius: $card-corner-75;
             flex-direction: column;
             opacity: 0;
             pointer-events: none;
@@ -438,7 +438,7 @@ footer.global {
     width: 3.25rem;
     position: relative;
     overflow: hidden;
-    border-radius: var(--card-corner-75);
+    border-radius: $card-corner-75;
     margin-left: auto;
     background-position: center center;
     background-size: cover;
@@ -540,7 +540,7 @@ footer.global {
         width: 3rem;
         align-items: center;
         justify-content: center;
-        border-radius: var(--card-corner-50);
+        border-radius: $card-corner-100;
         background-color: var(--card-bg);
         box-shadow: var(--card-shadow);
         color: var(--Cbrand);
