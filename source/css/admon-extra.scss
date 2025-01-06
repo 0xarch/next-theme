@@ -1,3 +1,5 @@
+@use "./_declaration.scss" as *;
+
 .admonition {
     margin: 2rem 0;
     padding: 0 1rem 0 1.25rem;
@@ -28,7 +30,7 @@
             inset: 0;
             content: '';
             opacity: .125;
-            border-radius: var(--card-corner-75);
+            border-radius: $card-corner-75;
         }
         background-color: transparent;
 

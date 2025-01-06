@@ -1,3 +1,5 @@
+@use "./_declaration.scss" as *;
+
 :root {
     color-scheme: light dark;
     font-family: Roboto, sans-serif, system-ui;
@@ -18,17 +20,16 @@
     --Ctext-75: #000000bf;
     --Ctext-100: #000;
 
-    @each $percent in (100, 75, 50, 25) {
-        --card-corner-#{$percent}: #{calc($percent / 100)}rem;
+    @each $percent, $value in (100, $card-corner-100), (75, $card-corner-75), (50,$card-corner-50), (25,$card-corner-25) {
+        --card-corner-#{$percent}: $value;
     }
 
     --card-bg: white;
-    --card-gap: 1rem;
-    --card-corner: var(--card-corner-100);
-    --card-corner-circle: 99rem;
-    --card-shadow: 0 4px 10px rgba(0, 0, 0, .05),
-    0 0 1px rgba(0, 0, 0, .1);
-    --card-padding: 1rem;
+    --card-gap: $card-gap;
+    --card-corner: $card-corner;
+    --card-corner-circle: $card-corner-circle;
+    --card-shadow: $card-shadow;
+    --card-padding: $card-padding;
 }
 
 @media(prefers-color-scheme:dark) {
@@ -122,7 +123,7 @@ body.not-ready {
 #NEO_MAIN {
     display: flex;
     flex-direction: column-reverse;
-    gap: var(--card-gap);
+    gap: $card-gap;
     max-width: var(--Wpage-width);
     margin: calc(37.75vh - 4.5rem) auto 0;
 }
@@ -131,7 +132,7 @@ body.not-ready {
 .stickyGroup {
     display: flex;
     flex-direction: column;
-    gap: var(--card-gap);
+    gap: $card-gap;
 }
 
 @media(min-width: 1024px) {
@@ -198,12 +199,12 @@ body.being-replaced #NEO_REPLACE {
 }
 
 .loading-circle {
-    --r: 5rem;
+    $r: 5rem;
     position: fixed;
-    width: calc(var(--r) * 2);
-    height: calc(var(--r) * 2);
-    left: calc(50% - var(--r));
-    top: calc(50% - var(--r));
+    width: calc($r * 2);
+    height: calc($r * 2);
+    left: calc(50% - $r);
+    top: calc(50% - $r);
     background-color: var(--card-bg);
     border-radius: 100vmax;
     z-index: 2000;
@@ -226,10 +227,11 @@ body:not(.dom-loaded) .loading-circle {
 }
 
 .loading-circle::before {
+    $r: .5rem;
     content: '';
     display: block;
-    width: calc(var(--r) / 1.15);
-    height: calc(var(--r) / 1.15);
+    width: calc($r / 1.15);
+    height: calc($r / 1.15);
     border: 1rem solid var(--Cbtn-regular-bg);
     border-top: 1rem solid var(--Cbtn-content);
     border-radius: 100vmax;

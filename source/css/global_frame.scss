@@ -1,12 +1,14 @@
+@use "_declaration.scss" as *;
+
 :root {
     --color-selection-bar: linear-gradient(to right, oklch(.7 .1 0), oklch(.7 .1 30), oklch(.7 .1 60), oklch(.7 .1 90), oklch(.7 .1 120), oklch(.7 .1 150), oklch(.7 .1 180), oklch(.7 .1 210), oklch(.7 .1 240), oklch(.7 .1 270), oklch(.7 .1 300), oklch(.7 .1 330), oklch(.7 .1 360));
 }
 
 .NeoWidget,
 .post-card {
-    padding: var(--card-padding);
-    border-radius: var(--card-corner);
-    box-shadow: var(--card-shadow);
+    padding: $card-padding;
+    border-radius: $card-corner;
+    box-shadow: $card-shadow;
     background: var(--Ccard-bg);
     box-sizing: border-box;
 }
@@ -18,7 +20,7 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    border-radius: var(--card-corner-50);
+    border-radius: $card-corner-50;
     background-color: var(--Cbtn-regular-bg);
     color: var(--Cbtn-content);
 
@@ -63,8 +65,8 @@ header.global {
     align-items: center;
     margin: 0 auto;
     padding: 0 1rem;
-    border-radius: 0 0 var(--card-corner) var(--card-corner);
-    box-shadow: var(--card-shadow);
+    border-radius: 0 0 $card-corner $card-corner;
+    box-shadow: $card-shadow;
     background-color: var(--Ccard-bg);
     transition-property: width, height, top, color, background-color;
     transition-duration: .15s;
@@ -112,7 +114,7 @@ header.global {
             opacity: 0;
             transition: transform .125s ease-in-out, opacity .125s ease-in-out;
             z-index: -1;
-            border-radius: var(--card-corner-50);
+            border-radius: $card-corner-50;
         }
 
         &:hover::before {
@@ -188,7 +190,7 @@ header.global {
         right: 1rem;
 
         &>* {
-            border-radius: var(--card-corner-75);
+            border-radius: $card-corner-75;
             background-color: var(--Ccard-bg);
             padding: .5rem;
 
@@ -216,7 +218,7 @@ header.global {
                         box-sizing: border-box;
                         background-color: var(--Cbtn-regular-bg);
                         color: var(--Cbtn-content);
-                        border-radius: var(--card-corner-50);
+                        border-radius: $card-corner-50;
                         text-align: center;
                         display: flex;
                         justify-content: center;
@@ -240,14 +242,14 @@ header.global {
                         display: block;
                         height: 1.5rem;
                         width: 100%;
-                        border-radius: var(--card-corner-25);
+                        border-radius: $card-corner-25;
                         appearance: none;
                         background: var(--color-selection-bar);
                         margin:0;
                         &::-webkit-slider-thumb {
                             height: 1.25rem;
                             width: .75rem;
-                            border-radius: var(--card-corner-25);
+                            border-radius: $card-corner-25;
                         }
                     }
                 }
