@@ -131,3 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
+document.addEventListener('DOMContentLoaded',()=>{
+    if(document.querySelector('meta[data-nosplash="1"]') && window.location.href.endsWith('/')){
+        history.replaceState('','', window.location.href.slice(0,window.location.href.length-1));
+    }
+})

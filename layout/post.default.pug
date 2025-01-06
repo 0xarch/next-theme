@@ -1,6 +1,7 @@
 extends global_layout.pug
 
 append head
+    meta(data-nosplash="1")
     title #{page.title} - #{ctx.config.title}
 
 block content
