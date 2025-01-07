@@ -164,7 +164,7 @@ header.global {
             }
 
             &>svg {
-                height: 1.45rem;
+                font-size: 1.45rem;
             }
         }
     }
@@ -486,7 +486,7 @@ footer.global {
 }
 
 .post-card>.readMore>.cover>svg {
-    height: 2rem;
+    font-size: 2.5rem;
 }
 
 .post-card.image>.readMore>.button {
@@ -542,7 +542,7 @@ footer.global {
         justify-content: center;
         border-radius: $card-corner-100;
         background-color: var(--card-bg);
-        box-shadow: var(--card-shadow);
+        box-shadow: $card-shadow;
         color: var(--Cbrand);
         cursor: pointer;
         font-weight: 900;
@@ -553,7 +553,7 @@ footer.global {
         }
 
         &:is(.prev, .next)>svg {
-            height: 2rem
+            font-size: 2rem;
         }
 
         &.now {

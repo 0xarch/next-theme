@@ -1,10 +1,19 @@
 import { join, relative } from "path";
 import { _i18n, ltl } from "./language.mjs";
-import SVGS from "./svgs.mjs";
+import SVGS, { get_material_symbols, reset_material_symbols } from "./svgs.mjs";
 import { languages } from "./append_page.mjs";
 import { get_fa_brand } from "./fontawesome.mjs";
 
 let SVG_USED = [];
+
+const get_svg  = (str) => {
+    if (SVG_USED.includes(str)) {
+        return SVGS[str].prefix + `<use xlink:href="#svg:${str}">` + SVGS[str].suffix;
+    } else {
+        SVG_USED.push(str);
+        return SVGS[str].prefix + `<symbol id="svg:${str}">${SVGS[str].inner}</symbol><use xlink:href="#svg:${str}">` + SVGS[str].suffix;
+    }
+};
 
 export default function (ctx) {
     let helpers = {
@@ -16,16 +25,19 @@ export default function (ctx) {
             }
             return array;
         },
-        get_svg: (str) => {
-            if (SVG_USED.includes(str)) {
-                return SVGS[str].prefix + `<use xlink:href="#svg:${str}"` + SVGS[str].suffix;
+        _icon: (str,type) => {
+            if(str.startsWith('fa-brand:')){
+                return get_fa_brand(str.replace('fa-brand:',''));
+            } else if(str.startsWith('material-symbols:') && type) {
+                return get_material_symbols(str.replace('material-symbols:',''),type);
             } else {
-                SVG_USED.push(str);
-                return SVGS[str].prefix + `<symbol id="svg:${str}">${SVGS[str].inner}</symbol><use xlink:href="#svg:${str}"` + SVGS[str].suffix;
+                return get_svg(str);
             }
         },
+        get_svg,
         clear_build: () => {
             SVG_USED = [];
+            reset_material_symbols();
         },
         post_url_for: (path) => {
             return join(ctx.config.root,relative(ctx.PUBLIC_DIRECTORY, path));

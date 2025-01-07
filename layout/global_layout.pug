@@ -29,18 +29,18 @@ html(lang=page.language)
         .loading-circle(aria-hidden="true")
         header.global
             a.--smooth.kLogo(href=url_for('/'))
-                .home-icon!= get_svg('material-symbols:home-outline-rounded')
+                .home-icon!= _icon('material-symbols:home','rounded')
                 .text!= ctx.config.title || `${ctx.config.author}'s Blog`
             .links
                 a.--smooth.home(href=url_for('/'))= __('Home')
                 a.--smooth.archives(href=url_for('/archives/0/'))= __('Archives')
             .operations
-                .palette!= get_svg('material-symbols:palette-outline')
-                .toggle!= get_svg('material-symbols:menu-rounded')
+                .palette!= _icon('material-symbols:palette','rounded')
+                .toggle!= _icon('material-symbols:menu','rounded')
             .operation-container
                 .palette
                     .line
-                        .reset-button!= get_svg('fa6-solid:arrow-rotate-left')
+                        .reset-button!= _icon('material-symbols:refresh','rounded')
                         .number-show
                     .scroll
                         input.scroller(value=250,type='range',min=0,max=360,step=5) 

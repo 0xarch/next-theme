@@ -18,9 +18,9 @@ block content
         - let is_earliest = page.current == (page.total - 1)
         - let is_latest = page.current == 0
         a.--smooth.left(href=!is_latest&&url_for(page.prev.relative_path),class=is_latest?'disabled':'')
-            .arrow!= get_svg('material-symbols:chevron-right-rounded')
+            .arrow!= _icon('material-symbols:chevron_right','rounded')
             .title= is_latest?__('Already latest'):page.prev.title
         a.--smooth.right(href=!is_earliest&&url_for(page.next.relative_path),class=is_earliest?'disabled':'')
             .title= is_earliest?__('Already earliest'):page.next.title
-            .arrow!= get_svg('material-symbols:chevron-right-rounded')
+            .arrow!= _icon('material-symbols:chevron_right','rounded')
     #markdown_TOC

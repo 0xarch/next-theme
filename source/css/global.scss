@@ -25,11 +25,11 @@
     }
 
     --card-bg: white;
-    --card-gap: $card-gap;
-    --card-corner: $card-corner;
-    --card-corner-circle: $card-corner-circle;
-    --card-shadow: $card-shadow;
-    --card-padding: $card-padding;
+    --card-gap: #{$card-gap};
+    --card-corner: #{$card-corner};
+    --card-corner-circle: #{$card-corner-circle};
+    --card-shadow: #{$card-shadow};
+    --card-padding: #{$card-padding};
 }
 
 @media(prefers-color-scheme:dark) {
@@ -254,4 +254,8 @@ body:not(.dom-loaded) .loading-circle {
     100% {
         transform: rotate(360deg);
     }
+}
+
+svg path, symbol path {
+    fill: currentColor;
 }

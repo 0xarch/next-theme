@@ -1,3 +1,6 @@
+import { existsSync, readFileSync } from "fs";
+import { join } from "path";
+
 const SVG_COMMON = {
     prefix: `<svg height="1em" viewBox="0 0 24 24">`,
     suffix: `</svg>`
@@ -53,12 +56,47 @@ const SVGS = {
         prefix: `<svg height="1em" viewBox="0 0 512 512" width="1em">`,
         suffix: `</svg>`,
         inner: `<path d="M125.7 160H176c17.7 0 32 14.3 32 32s-14.3 32-32 32H48c-17.7 0-32-14.3-32-32V64c0-17.7 14.3-32 32-32s32 14.3 32 32v51.2l17.6-17.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0z" fill="currentColor"></path>`,
-    },
-    'brand:creative-commons': {
-        prefix: `<svg viewBox="0 0 30 30" fill="currentColor">`,
-        suffix: `</svg>`,
-        inner: `<g><path d="M14.972 0c4.196 0 7.769 1.465 10.715 4.393A14.426 14.426 0 0128.9 9.228C29.633 11.04 30 12.964 30 15c0 2.054-.363 3.978-1.085 5.772a13.77 13.77 0 01-3.2 4.754 15.417 15.417 0 01-4.983 3.322A14.932 14.932 0 0114.973 30c-1.982 0-3.88-.38-5.692-1.14a15.087 15.087 0 01-4.875-3.293c-1.437-1.437-2.531-3.058-3.281-4.862A14.71 14.71 0 010 15c0-1.982.38-3.888 1.138-5.719a15.062 15.062 0 013.308-4.915C7.303 1.456 10.812 0 14.972 0zm.055 2.706c-3.429 0-6.313 1.196-8.652 3.589a12.896 12.896 0 00-2.72 4.031 11.814 11.814 0 00-.95 4.675c0 1.607.316 3.156.95 4.646a12.428 12.428 0 002.72 3.992 12.362 12.362 0 003.99 2.679c1.483.616 3.037.924 4.662.924 1.607 0 3.164-.312 4.675-.937a12.954 12.954 0 004.084-2.705c2.339-2.286 3.508-5.152 3.508-8.6 0-1.66-.304-3.231-.91-4.713a11.994 11.994 0 00-2.651-3.965c-2.412-2.41-5.314-3.616-8.706-3.616zm-.188 9.803l-2.01 1.045c-.215-.445-.477-.758-.79-.937-.312-.178-.602-.268-.87-.268-1.34 0-2.01.884-2.01 2.652 0 .803.17 1.446.509 1.928.34.482.84.724 1.5.724.876 0 1.492-.43 1.85-1.286l1.847.937a4.407 4.407 0 01-1.634 1.728c-.696.42-1.464.63-2.303.63-1.34 0-2.42-.41-3.242-1.233-.821-.82-1.232-1.964-1.232-3.428 0-1.428.416-2.562 1.246-3.401.83-.84 1.879-1.26 3.147-1.26 1.858 0 3.188.723 3.992 2.17zm8.652 0l-1.983 1.045c-.214-.445-.478-.758-.79-.937-.313-.178-.613-.268-.897-.268-1.34 0-2.01.884-2.01 2.652 0 .803.17 1.446.51 1.928.338.482.838.724 1.5.724.874 0 1.49-.43 1.847-1.286l1.875.937a4.606 4.606 0 01-1.66 1.728c-.696.42-1.455.63-2.277.63-1.357 0-2.441-.41-3.253-1.233-.814-.82-1.22-1.964-1.22-3.428 0-1.428.415-2.562 1.246-3.401.83-.84 1.879-1.26 3.147-1.26 1.857 0 3.18.723 3.965 2.17z" fill="currentColor"></path></g>`,
     }
 };
+
+let current_used_ms_list = {};
+
+function _join_svg(id,obj, is_first = false) {
+    if (is_first) {
+        return obj.prefix + `<symbol id="svg:${id}" viewBox="${obj.viewBox}">${obj.inner}</symbol><use xlink:href="#svg:${id}"></use>` + obj.suffix;
+    } else {
+        return obj.prefix + `<use xlink:href="#svg:${id}"></use>` + obj.suffix;
+    }
+}
+
+const ms_prefix = '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 -960 960 960">',
+    ms_suffix = '</svg>';
+
+const cor_prefix = `<svg height="1em" width="1em">`;
+
+export function get_material_symbols(str, type) {
+    const id = `${str}-${type}`;
+    if (Object.keys(current_used_ms_list).includes(id)) {
+        return _join_svg(id,current_used_ms_list[id]);
+    }
+    let target = join(process.cwd(), 'node_modules/@material-symbols/svg-400/', type, `${str}.svg`);
+    if (!existsSync(target)) {
+        console.error(`[ERROR] Theme helper error: Cannot find \`${target}\` for: ${id}`);
+        return;
+    }
+    const file = readFileSync(target).toString();
+    let obj = {
+        prefix: cor_prefix,
+        suffix: ms_suffix,
+        viewBox: "0 -960 960 960",
+        inner: file.replace(ms_prefix, '').replace(ms_suffix, ''),
+    }
+    current_used_ms_list[id] = obj;
+    return _join_svg(id,current_used_ms_list[id], true);
+}
+
+export function reset_material_symbols() {
+    current_used_ms_list = {};
+}
 
 export default SVGS;

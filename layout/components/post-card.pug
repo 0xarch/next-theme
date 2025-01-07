@@ -12,5 +12,5 @@ mixin post-card(item)
                 .hr
                 .evlTime= evlTime+' '+__(evlTime==1?'Minute':'Minutes')
         a.--smooth.readMore(href=url_for(item.relative_path),style=item.properties.image&&'background-image: url('+item.properties.image+')')
-            .cover!= get_svg('material-symbols:chevron-right-rounded')
+            .cover!= _icon('material-symbols:chevron_right','rounded')
             .button
