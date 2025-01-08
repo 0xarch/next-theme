@@ -1,0 +1,7 @@
+- let ch = ['zh-CN','zh-TW','zh-HK'];
+- let rpReg = /\-.*?$/;
+mixin giscus-widget(page)
+    if ctx.config._custom_giscus
+        .giscus-widget.NeoWidget
+            .giscus
+            != ctx.config._custom_giscus.replace(/data-lang="[^"]*?"/,`data-lang="${ch.includes(page.language) ? page.language : page.language.replace(rpReg,'')}"`)

@@ -14,6 +14,7 @@ block content
         article#markdown_fillContent
             != page.content
         +license(page)
+    +giscus-widget(page)
     .next-page
         - let is_earliest = page.current == (page.total - 1)
         - let is_latest = page.current == 0

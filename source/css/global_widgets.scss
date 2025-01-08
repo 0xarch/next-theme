@@ -163,3 +163,10 @@
         margin: 1rem -1rem -1rem;
     }
 }
+
+.giscus {
+    box-sizing: border-box;
+    padding: $card-padding;
+    background-color: var(--Cbg);
+    border-radius: $card-corner-75;
+}
