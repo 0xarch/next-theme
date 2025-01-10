@@ -1,5 +1,6 @@
 import { navBarInit } from './navBar.mjs';
 import { toc } from './toc.mjs';
+import { findAndInitGiscus } from './giscus.mjs';
 import Reload from './smoothNav.mjs';
 
 ((window) => {
@@ -19,6 +20,8 @@ import Reload from './smoothNav.mjs';
 
 function DoOthers() {
     document.body.classList.remove('main-anim-finished');
+    // giscus
+    findAndInitGiscus();
     // TOC
     toc();
     // NavigationBar

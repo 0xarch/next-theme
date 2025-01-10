@@ -2,6 +2,7 @@
 - let rpReg = /\-.*?$/;
 mixin giscus-widget(page)
     if ctx.config._custom_giscus
+        - let lang = ch.includes(page.language) ? page.language : page.language.replace(rpReg,'');
         .giscus-widget.NeoWidget
             .giscus
-            != ctx.config._custom_giscus.replace(/data-lang="[^"]*?"/,`data-lang="${ch.includes(page.language) ? page.language : page.language.replace(rpReg,'')}"`)
+            ._giscus_script(hidden="true")= ctx.config._custom_giscus.replace(/data-lang="[^"]*?"/,`data-lang="${lang}"`)

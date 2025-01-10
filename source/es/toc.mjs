@@ -10,7 +10,6 @@ const TOC = (markdown_content, toc) => {
     let tocList = markdown_content.querySelectorAll("h2, h3, h4, h5, h6");
     let liList = [];
     tocList.forEach((v) => {
-        console.log(tocList);
         const H = v.nodeName[1];
         let li = document.createElement('li');
         li.classList.add(`li-${H}`);
