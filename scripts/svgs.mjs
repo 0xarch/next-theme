@@ -79,7 +79,7 @@ export function get_material_symbols(str, type) {
     if (Object.keys(current_used_ms_list).includes(id)) {
         return _join_svg(id,current_used_ms_list[id]);
     }
-    let target = join(process.cwd(), 'node_modules/@material-symbols/svg-400/', type, `${str}.svg`);
+    let target = join(process.cwd(), 'node_modules/@material-symbols/svg-600/', type, `${str}.svg`);
     if (!existsSync(target)) {
         console.error(`[ERROR] Theme helper error: Cannot find \`${target}\` for: ${id}`);
         return;
