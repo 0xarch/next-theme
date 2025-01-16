@@ -81,8 +81,11 @@ export function get_material_symbols(str, type) {
     }
     let target = join(process.cwd(), 'node_modules/@material-symbols/svg-600/', type, `${str}.svg`);
     if (!existsSync(target)) {
-        console.error(`[ERROR] Theme helper error: Cannot find \`${target}\` for: ${id}`);
-        return;
+        target = join(process.cwd(), 'node_modules/@material-symbols/svg-400/', type, `${str}.svg`);
+        if(!existsSync(target)){
+            console.error(`[ERROR] Theme helper error: Cannot find \`${target}\` for: ${id}`);
+            return;
+        }
     }
     const file = readFileSync(target).toString();
     let obj = {
